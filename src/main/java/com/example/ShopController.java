@@ -29,6 +29,7 @@ public class ShopController {
 
     @RequestMapping(method = RequestMethod.POST)
     public Shop saveShop(@RequestBody final Shop shop) {
-        return shopRepository.save(shop);
+        shopRepository.save(shop);
+        return shopRepository.findOne(shop.getId());
     }
 }
