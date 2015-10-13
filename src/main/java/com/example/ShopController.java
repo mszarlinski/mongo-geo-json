@@ -1,12 +1,10 @@
 package com.example;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * @author mszarlinski on 2015-10-13.
@@ -27,9 +25,9 @@ public class ShopController {
         return shopRepository.findAll();
     }
 
+    @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(method = RequestMethod.POST)
     public Shop saveShop(@RequestBody final Shop shop) {
-        shopRepository.save(shop);
-        return shopRepository.findOne(shop.getId());
+        return shopRepository.insert(shop);
     }
 }
